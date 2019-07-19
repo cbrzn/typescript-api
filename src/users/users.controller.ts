@@ -20,19 +20,25 @@ class UserController implements Controller {
     private sendUserInformation = (request: express.Request, response: express.Response) => {
         this.userService.getUserInformation(request.params.userId).then((result: any) => {
             response.send(result)
+        }).catch(error => {
+            response.send(error)
         })
     }
 
     private sendAvatar = (request: express.Request, response: express.Response) => {
         this.userService.getAvatar(request.params.userId).then((result: any) => {
             response.send(result)  
+        }).catch(error => {
+            response.send(error)  
         })
     }
 
     private dropUser = (request: express.Request, response: express.Response) => {
         this.userService.deleteUser(request.params.userId).then((result: any) => {
             response.send(result)  
-        })    
+        }).catch(error => {
+            response.send(error)
+        })
     }
 }
 
