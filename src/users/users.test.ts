@@ -4,7 +4,7 @@ describe('User service', () => {
     const userService = new UserService()
     it('getting user information', () => {
         userService.getUserInformation(1).then(result => {
-            expect(result).toBe('string')
+            expect(result).toBe({})
         })
     })
 

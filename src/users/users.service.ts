@@ -16,7 +16,7 @@ class UserService {
     public getUserInformation = (userId) => {
       return new Promise(async (resolve, reject) => {
             const result = await rp.get(`https://reqres.in/api/users/${userId}`)
-            resolve({ status: 200, result })
+            resolve({ status: 200, result: JSON.parse(result) })
         })
     }
      
