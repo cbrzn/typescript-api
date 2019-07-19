@@ -1,12 +1,13 @@
-import * as express from 'express';
-import User from './users.interface';
+import * as express from 'express'
+import User from './users.interface'
 import UserModel from '../models/User'
 import * as rp from 'request-promise'
 import { base64 } from 'base64-img'
 import * as path from 'path'
 import * as fs from 'fs'
+import Controller from 'interfaces/controller.interface';
 
-class UserController {
+class UserController implements Controller {
     public path ="/user";
     public router = express.Router()
 
@@ -20,9 +21,9 @@ class UserController {
     }
      
     public intializeRoutes() {
-    this.router.get(`${this.path}/:userId`, this.getUserInformacion);
-    this.router.get(`${this.path}/:userId/avatar`, this.getAvatar);
-    this.router.delete(`${this.path}/:userId/avatar`, this.deleteUser);
+        this.router.get(`${this.path}/:userId`, this.getUserInformacion);
+        this.router.get(`${this.path}/:userId/avatar`, this.getAvatar);
+        this.router.delete(`${this.path}/:userId/avatar`, this.deleteUser);
     }
 
     getUserInformacion = (request: express.Request, response: express.Response) => {
