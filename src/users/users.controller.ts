@@ -28,7 +28,8 @@ class UserController implements Controller {
 
     getUserInformacion = (request: express.Request, response: express.Response) => {
     rp.get(`https://reqres.in/api/users/${request.params.userId}`).then(result => {
-        response.json({ status: 200, user: result.data });
+        console.log('here')
+        response.json({ status: 200, user: JSON.parse(result).data });
     }).catch(error => {
         console.log(error)
         response.json({ status: 500, error });
