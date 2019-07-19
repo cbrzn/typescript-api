@@ -17,30 +17,29 @@ class UserController {
 
     constructor() {
         this.intializeRoutes();
-      }
+    }
      
-      public intializeRoutes() {
-        this.router.get(`${this.path}/:userId`, this.getUserInformacion);
-        this.router.get(`${this.path}/:userId/avatar`, this.getAvatar);
-        this.router.delete(`${this.path}/:userId/avatar`, this.deleteUser);
-      }
+    public intializeRoutes() {
+    this.router.get(`${this.path}/:userId`, this.getUserInformacion);
+    this.router.get(`${this.path}/:userId/avatar`, this.getAvatar);
+    this.router.delete(`${this.path}/:userId/avatar`, this.deleteUser);
+    }
 
-      getUserInformacion = (request: express.Request, response: express.Response) => {
-        rp.get(`https://reqres.in/api/users/${request.params.userId}`).then(result => {
-            response.json({ status: 200, user: result.data });
-        }).catch(error => {
-            console.log(error)
-            response.json({ status: 500, error });
-        })
-      }
+    getUserInformacion = (request: express.Request, response: express.Response) => {
+    rp.get(`https://reqres.in/api/users/${request.params.userId}`).then(result => {
+        response.json({ status: 200, user: result.data });
+    }).catch(error => {
+        console.log(error)
+        response.json({ status: 500, error });
+    })
+    }
      
-      getAvatar = async (request: express.Request, response: express.Response) => {   
+    getAvatar = async (request: express.Request, response: express.Response) => {   
         const user = await UserModel.findOne({ identifier: request.params.userId })
         if (user) {
             response.json({ status: 200, user });
         } else {
             rp.get(`https://reqres.in/api/users/${request.params.userId}`).then(result => {
-                console.log(result)
                 const userInformation = JSON.parse(result)
                 const file = path.join(__dirname, '../images', `/image_user_${userInformation.data.id}.jpg`)
                 fs.writeFileSync(file, userInformation.data.avatar)
@@ -49,14 +48,14 @@ class UserController {
                     this.user.avatar = data;
                     this.user.identifier = userInformation.data.id
                     await new UserModel(this.user).save()
-                    response.json({ status: 200, avatar_added: file})
+                    response.json({ status: 200, avatar_added: data})
                 })
             }).catch(error => {
                 console.log(error)
                 response.json({ status: 500, error });
             })
         }
-      }
+    }
 
       deleteUser = async (request: express.Request, response: express.Response) => {
         try {

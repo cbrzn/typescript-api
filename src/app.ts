@@ -1,8 +1,7 @@
 import * as express from 'express';
 import * as mongoose from 'mongoose';
-// import routes from '../routes/'; 
 
-class App {
+export default class App {
   public app: express.Application;
   constructor(controllers) {
     this.app = express();
@@ -17,7 +16,7 @@ class App {
   }
 
   private setDatabase() {
-    mongoose.connect('mongodb://localhost/usersApi', { useNewUrlParser: true })
+      mongoose.connect('mongodb://localhost/usersApi', { useNewUrlParser: true })
   }
   
   public listen() {
@@ -27,4 +26,3 @@ class App {
   }
 }
  
-export default App
