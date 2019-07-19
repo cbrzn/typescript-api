@@ -18,6 +18,10 @@ export default class App {
   private setDatabase() {
     mongoose.connect('mongodb://localhost/usersApi', { useNewUrlParser: true })
   }
+
+  public getServer() {
+    return this.app;
+  }
   
   public listen() {
     this.app.listen(3000, () => {

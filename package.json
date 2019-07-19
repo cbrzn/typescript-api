@@ -11,7 +11,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/node-cron": "^2.0.2",
     "base64-img": "^1.0.4",
     "express": "^4.17.1",
     "mongoose": "^5.6.5",
@@ -20,6 +19,7 @@
     "ts-node": "^8.3.0"
   },
   "devDependencies": {
+    "@types/node-cron": "^2.0.2",
     "@types/jest": "^24.0.15",
     "@types/node": "^12.6.8",
     "@types/supertest": "^2.0.8",
