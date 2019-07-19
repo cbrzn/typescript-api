@@ -16,7 +16,7 @@ export default class App {
   }
 
   private setDatabase() {
-      mongoose.connect('mongodb://localhost/usersApi', { useNewUrlParser: true })
+    mongoose.connect('mongodb://localhost/usersApi', { useNewUrlParser: true })
   }
   
   public listen() {
